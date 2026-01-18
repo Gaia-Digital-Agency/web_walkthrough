@@ -1,4 +1,4 @@
-/* Define Journey Phases - using CSS custom properties instead of SCSS */
+/* Define Journey Phases - using CSS custom properties */
 :root {
     --awareness: #3b82f6;
     --logic: #8b5cf6;
@@ -124,24 +124,53 @@ nav {
 .hero {
     padding: 100px 5%;
     text-align: center;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+    background: linear-gradient(135deg, #1a73e8 0%, #0b57d0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.hero-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    opacity: 0.25;
+}
+
+@media screen and (min-width: 768px) {
+    .hero-logo {
+        max-width: 400px;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--text);
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content p {
     font-size: 1.25rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
 }
 
 .cta-primary {
-    background: var(--primary);
-    color: #fff;
+    background: #fff;
+    color: var(--primary);
     border: none;
     padding: 14px 32px;
     font-size: 1rem;
@@ -152,8 +181,9 @@ nav {
 }
 
 .cta-primary:hover {
-    background: #0b57d0;
-    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
 .trust-bar {
@@ -192,66 +222,93 @@ nav {
     font-size: 1.1rem;
 }
 
-.section-padding {
-    padding: 80px 5%;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Hero logo */
-.hero-logo {
-    max-width: 120px;
-    height: auto;
-    margin: 0 auto 2rem;
-    border-radius: 12px;
-}
-
-/* Page specific */
-.product-section {
+.features {
     padding: 60px 5%;
-}
-
-.product-section h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--text);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    border-radius: 8px;
     text-align: center;
 }
 
-.feature-card h3 {
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #f8f9fa;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.card h3 {
     margin-bottom: 0.5rem;
     color: var(--text);
 }
 
-.feature-card p {
+.card p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
 }
 
-/* Contact form */
-.contact-section {
+.security {
     padding: 60px 5%;
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: center;
+    background: #f8f9fa;
 }
 
-.contact-section h2 {
+.badge {
+    display: inline-block;
+    background: #10b981;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.lead-gen {
+    padding: 60px 5%;
     text-align: center;
+}
+
+.lead-gen h3 {
+    margin-bottom: 1.5rem;
+}
+
+.lead-gen input {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    width: 250px;
+}
+
+.lead-gen button {
+    padding: 12px 24px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.form-container {
+    padding: 60px 5%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-container h2 {
     margin-bottom: 2rem;
 }
 
@@ -261,30 +318,27 @@ form {
     gap: 1rem;
 }
 
-form input,
-form textarea {
+form input {
     padding: 12px;
     border: 1px solid var(--border);
     border-radius: 6px;
     font-size: 1rem;
-    font-family: inherit;
 }
 
-form input:focus,
-form textarea:focus {
+form input:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
 form button {
+    padding: 14px;
     background: var(--primary);
     color: #fff;
     border: none;
-    padding: 14px;
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -292,13 +346,16 @@ form button:hover {
     background: #0b57d0;
 }
 
-.success-message {
+#successMessage {
+    padding: 60px 5%;
     text-align: center;
-    padding: 3rem;
     background: #e8f5e9;
-    border-radius: 8px;
 }
 
-.success-message h2 {
+#successMessage h2 {
     color: #2e7d32;
+}
+
+.hidden {
+    display: none;
 }
